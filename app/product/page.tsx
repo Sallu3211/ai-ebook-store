@@ -2,35 +2,31 @@ import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyBar from "@/components/layout/StickyBar";
-import FloatingPopup from "@/components/ui/FloatingPopup";
-import Hero from "@/components/sections/Hero";
 import Features from "@/components/sections/Features";
 import Testimonials from "@/components/sections/Testimonials";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
-import EmailCapture from "@/components/sections/EmailCapture";
+import ProductHero from "@/components/sections/ProductHero";
 
 export const metadata: Metadata = {
-  title: "AI Lead Generation Strategy — The #1 Ebook for Modern Marketers",
+  title: "AI Lead Generation Strategy Ebook — Full Details & Pricing",
   description:
-    "Generate 10x more qualified leads using proven AI frameworks. 150+ pages, 40+ templates, instant download. Trusted by 2,400+ growth leaders.",
+    "Everything inside the AI Lead Generation Strategy ebook. 150+ pages, 40+ templates, automation blueprints. Plans starting from $17.",
 };
 
-export default function HomePage() {
+export default function ProductPage() {
   return (
     <>
       <Navbar />
       <main className="flex-1">
-        <Hero />
+        <ProductHero />
         <Features />
         <Testimonials />
-        <EmailCapture />
         <Pricing />
         <FAQ />
       </main>
       <Footer />
       <StickyBar />
-      <FloatingPopup />
     </>
   );
 }
