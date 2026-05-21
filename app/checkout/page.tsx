@@ -5,30 +5,29 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { PRODUCTS, getProduct, type Product } from "@/lib/products";
+import { STORE_PRODUCTS, getStoreProduct, getProductPlan, type StoreProduct, type ProductPlan } from "@/lib/store";
 
 function CheckoutForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const productSlug = searchParams.get("product") ?? STORE_PRODUCTS[0].slug;
   const planId = searchParams.get("plan") ?? "pro";
 
-  const [product, setProduct] = useState<Product>(
-    getProduct(planId) ?? PRODUCTS[1]
+  const [product, setProduct] = useState<StoreProduct>(
+    getStoreProduct(productSlug) ?? STORE_PRODUCTS[0]
+  );
+  const [plan, setPlan] = useState<ProductPlan>(
+    getProductPlan(product, planId) ?? product.plans[0]
   );
   const [step, setStep] = useState<"form" | "processing">("form");
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    card: "",
-    expiry: "",
-    cvc: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", card: "", expiry: "", cvc: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    const p = getProduct(planId);
-    if (p) setProduct(p);
-  }, [planId]);
+    const p = getStoreProduct(productSlug) ?? STORE_PRODUCTS[0];
+    setProduct(p);
+    setPlan(getProductPlan(p, planId) ?? p.plans[0]);
+  }, [productSlug, planId]);
 
   const formatCard = (v: string) =>
     v.replace(/\D/g, "").slice(0, 16).replace(/(.{4})/g, "$1 ").trim();
@@ -53,21 +52,19 @@ function CheckoutForm() {
     e.preventDefault();
     if (!validate()) return;
     setStep("processing");
-    // ── PADDLE INTEGRATION POINT ────────────────────────────────────────────
-    // When you're ready to go live, replace the setTimeout below with:
-    //
+    // ── PADDLE INTEGRATION POINT ──────────────────────────────────────────────
     // window.Paddle.Checkout.open({
-    //   items: [{ priceId: product.paddlePriceId, quantity: 1 }],
+    //   items: [{ priceId: plan.paddlePriceId, quantity: 1 }],
     //   customer: { email: formData.email },
     //   settings: {
     //     displayMode: "overlay",
     //     theme: "dark",
-    //     successUrl: `${window.location.origin}/success?plan=${product.id}`,
+    //     successUrl: `${window.location.origin}/success?product=${product.slug}&plan=${plan.id}`,
     //   },
     // });
-    // ────────────────────────────────────────────────────────────────────────
+    // ─────────────────────────────────────────────────────────────────────────
     await new Promise((r) => setTimeout(r, 2500));
-    router.push(`/success?plan=${product.id}`);
+    router.push(`/success?product=${product.slug}&plan=${plan.id}`);
   };
 
   const inputBase =
@@ -78,9 +75,11 @@ function CheckoutForm() {
       ? `${inputBase} border-red-500/50`
       : `${inputBase} border-white/10 focus:border-indigo-500/50`;
 
+  const savings = plan ? plan.originalPrice - plan.price : 0;
+  const savingsPercent = plan ? Math.round((savings / plan.originalPrice) * 100) : 0;
+
   return (
     <>
-      {/* Processing overlay */}
       {step === "processing" && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#030712]/80 backdrop-blur-sm">
           <div className="glass-strong rounded-2xl p-10 text-center max-w-xs mx-4">
@@ -94,32 +93,28 @@ function CheckoutForm() {
       <div className="flex flex-col lg:flex-row gap-8 items-start">
         {/* Left — form */}
         <div className="flex-1 w-full min-w-0">
-          {/* Plan selector tabs */}
-          <div className="glass rounded-2xl p-4 mb-6">
-            <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
-              Choose Your Plan
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {PRODUCTS.map((p) => (
-                <Link
-                  key={p.id}
-                  href={`/checkout?plan=${p.id}`}
-                  className={`rounded-xl p-3 text-center transition-all border ${
-                    product.id === p.id
-                      ? "bg-indigo-500/15 border-indigo-500/40 text-white"
-                      : "border-white/8 text-slate-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  <p className="text-lg font-black">${p.price}</p>
-                  <p className="text-xs font-medium mt-0.5 truncate">{p.name}</p>
-                </Link>
-              ))}
+
+          {/* Product summary header */}
+          <div className="glass rounded-2xl p-4 mb-6 flex items-center gap-4">
+            <div className="w-12 h-14 flex-shrink-0 rounded-xl bg-gradient-to-br from-indigo-900 to-violet-900 border border-indigo-700/30 flex items-center justify-center text-xl">
+              {product.coverEmoji}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-white truncate">{product.name}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{plan?.name} plan</p>
+            </div>
+            <div className="text-right flex-shrink-0">
+              <p className="text-xl font-black text-white">${plan?.price}</p>
+              <p className="text-xs text-slate-500 line-through">${plan?.originalPrice}</p>
             </div>
           </div>
 
           <h1 className="text-2xl font-black text-white mb-1">Complete Your Order</h1>
           <p className="text-sm text-slate-400 mb-6">
-            Secure checkout — 256-bit SSL encrypted
+            Secure checkout · 256-bit SSL ·{" "}
+            <Link href={`/products/${product.slug}`} className="text-indigo-400 hover:text-indigo-300 transition-colors">
+              Change plan
+            </Link>
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -223,7 +218,7 @@ function CheckoutForm() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
-              Pay ${product.price}.00 — Get Instant Access
+              Pay ${plan?.price}.00 — Get Instant Access
             </button>
 
             <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-600">
@@ -241,42 +236,41 @@ function CheckoutForm() {
               <p className="text-xs font-bold text-white uppercase tracking-wider">Order Summary</p>
             </div>
             <div className="p-5">
-              {/* Product */}
-              <div className="flex gap-3 mb-5 pb-5 border-b border-white/8">
-                <div className="w-12 h-14 flex-shrink-0 rounded-xl bg-gradient-to-br from-indigo-900 to-violet-900 border border-indigo-700/30 flex items-center justify-center text-xl">
-                  📘
+              {/* Savings badge */}
+              {savings > 0 && (
+                <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-3 py-2.5 mb-5">
+                  <span className="text-emerald-400 text-sm">🎉</span>
+                  <p className="text-xs font-semibold text-emerald-400">
+                    You&apos;re saving ${savings}.00 ({savingsPercent}% off) today
+                  </p>
                 </div>
-                <div>
-                  <p className="text-sm font-bold text-white">{product.name}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">AI Lead Generation Strategy</p>
-                  <span className="inline-block mt-1 text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
-                    {product.badge}
-                  </span>
-                </div>
-              </div>
+              )}
 
-              {/* Price breakdown */}
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-sm">
+                  <span className="text-slate-400">{product.name}</span>
+                  <span className="text-white font-medium">{plan?.name}</span>
+                </div>
+                <div className="flex justify-between text-sm">
                   <span className="text-slate-400">Original price</span>
-                  <span className="text-slate-500 line-through">${product.originalPrice}.00</span>
+                  <span className="text-slate-500 line-through">${plan?.originalPrice}.00</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-slate-400">Discount</span>
-                  <span className="text-emerald-400 font-medium">
-                    −${product.originalPrice - product.price}.00
-                  </span>
+                  <span className="text-emerald-400 font-medium">−${savings}.00</span>
                 </div>
               </div>
 
               <div className="flex justify-between items-center border-t border-white/8 pt-4 mb-5">
                 <span className="font-bold text-white">Total today</span>
-                <span className="text-2xl font-black text-white">${product.price}.00</span>
+                <span className="text-2xl font-black text-white">${plan?.price}.00</span>
               </div>
 
-              {/* Features */}
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+                What&apos;s included:
+              </p>
               <ul className="space-y-2 mb-5">
-                {product.features.map((f) => (
+                {plan?.features.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-xs">
                     <svg className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
@@ -286,7 +280,20 @@ function CheckoutForm() {
                 ))}
               </ul>
 
-              <div className="text-center text-xs text-slate-600 border-t border-white/8 pt-4">
+              <div className="border-t border-white/8 pt-4 space-y-2">
+                {[
+                  { icon: "🔒", text: "Secure 256-bit SSL payment" },
+                  { icon: "⚡", text: "Instant download after payment" },
+                  { icon: "↩️", text: "30-day money-back guarantee" },
+                ].map((g) => (
+                  <div key={g.text} className="flex items-center gap-2 text-xs text-slate-500">
+                    <span>{g.icon}</span>
+                    <span>{g.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center text-xs text-slate-600 border-t border-white/8 pt-4 mt-4">
                 Questions?{" "}
                 <a href="mailto:info@aiproducts.online" className="text-indigo-400 hover:text-indigo-300">
                   info@aiproducts.online

@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about LeadGenPro and our mission to help businesses grow with AI-powered lead generation strategies.",
+    "Learn about TrendingAI and our mission to help businesses win with the latest AI tools, ebooks, and templates.",
 };
 
 export default function AboutPage() {
@@ -19,11 +19,11 @@ export default function AboutPage() {
           <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4">
               About{" "}
-              <span className="gradient-text">LeadGenPro</span>
+              <span className="gradient-text">TrendingAI</span>
             </h1>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-              We create practical, no-fluff resources that help businesses leverage
-              AI to grow faster and smarter.
+              We curate and create the best AI tools, ebooks, and templates that
+              help businesses move faster and stay ahead of the curve.
             </p>
           </div>
 
@@ -31,15 +31,15 @@ export default function AboutPage() {
           <div className="glass rounded-2xl p-8 sm:p-12 mb-8">
             <h2 className="text-2xl font-bold text-white mb-4">Our Mission</h2>
             <p className="text-slate-400 leading-relaxed mb-4">
-              At LeadGenPro, we believe every business — regardless of size or
-              budget — deserves access to world-class AI strategies. The AI
-              revolution is happening now, and businesses that don&apos;t adapt will
-              be left behind.
+              At TrendingAI, we believe every business — regardless of size or
+              budget — deserves access to world-class AI resources. The AI
+              revolution is happening now, and those who act on it win.
             </p>
             <p className="text-slate-400 leading-relaxed">
-              We distill complex AI concepts into actionable playbooks that real
-              marketers, founders, and growth leaders can implement immediately.
-              No PhD required. No enterprise budget needed. Just results.
+              We hand-pick and build the most actionable AI products available —
+              ebooks, prompt packs, templates, and tools — so marketers, founders,
+              and growth leaders can implement immediately. No PhD required.
+              No enterprise budget needed. Just results.
             </p>
           </div>
 
@@ -87,10 +87,10 @@ export default function AboutPage() {
           {/* CTA */}
           <div className="text-center">
             <p className="text-slate-400 mb-6">
-              Ready to transform your lead generation with AI?
+              Ready to get your AI unfair advantage?
             </p>
-            <Button href="/checkout" size="lg">
-              See Pricing &amp; Plans →
+            <Button href="/products" size="lg">
+              Browse All Products →
             </Button>
           </div>
         </div>

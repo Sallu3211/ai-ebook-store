@@ -18,10 +18,8 @@ export default function FloatingPopup() {
   useEffect(() => {
     if (sessionStorage.getItem("popup_dismissed")) return;
 
-    // Show after 20 seconds
     const timer = setTimeout(() => setIsVisible(true), 20000);
 
-    // Exit-intent on desktop
     const onMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0 && !sessionStorage.getItem("popup_dismissed")) {
         setIsVisible(true);
@@ -40,7 +38,7 @@ export default function FloatingPopup() {
     e.preventDefault();
     // Add your email provider API call here
     setSubmitted(true);
-    setTimeout(dismiss, 2000);
+    setTimeout(dismiss, 2500);
   };
 
   return (
@@ -82,23 +80,24 @@ export default function FloatingPopup() {
                 {submitted ? (
                   <div className="text-center py-4">
                     <p className="text-3xl mb-3">🎉</p>
-                    <h3 className="text-lg font-bold text-white mb-1">You&apos;re in!</h3>
-                    <p className="text-sm text-slate-400">Check your inbox for the free chapter.</p>
+                    <h3 className="text-lg font-bold text-white mb-1">You&apos;re In!</h3>
+                    <p className="text-sm text-slate-400">Check your inbox — your exclusive offer is on the way.</p>
                   </div>
                 ) : (
                   <>
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-3 py-1 mb-4">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                      <span className="text-xs font-semibold text-amber-300">Wait — Special Offer</span>
+                      <span className="text-xs font-semibold text-amber-300">Limited Time Offer</span>
                     </div>
 
                     <h2 className="text-2xl font-black text-white mb-2 leading-tight">
-                      Get Chapter 1{" "}
-                      <span className="gradient-text">Completely Free</span>
+                      Grab{" "}
+                      <span className="gradient-text">15% Off</span>{" "}
+                      Your First Order
                     </h2>
                     <p className="text-sm text-slate-400 mb-5 leading-relaxed">
-                      Enter your email and we&apos;ll send you &ldquo;Building Your AI Lead Generation Foundation&rdquo; instantly — no credit card needed.
+                      Join 2,400+ marketers and founders. Get your exclusive discount code delivered instantly — no credit card needed.
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-3 mb-4">
@@ -114,17 +113,17 @@ export default function FloatingPopup() {
                         type="submit"
                         className="w-full py-3 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 transition-all shadow-lg shadow-indigo-500/25 active:scale-[0.99]"
                       >
-                        Send Me the Free Chapter →
+                        Claim My 15% Off →
                       </button>
                     </form>
 
                     <div className="border-t border-white/8 pt-4 flex items-center justify-between">
                       <p className="text-xs text-slate-500">No spam. Unsubscribe anytime.</p>
                       <button
-                        onClick={() => { dismiss(); router.push("/checkout?plan=pro"); }}
+                        onClick={() => { dismiss(); router.push("/products/ai-lead-generation"); }}
                         className="text-xs text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
                       >
-                        Skip — Buy now ($27) →
+                        Skip — Shop now →
                       </button>
                     </div>
                   </>

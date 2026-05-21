@@ -6,39 +6,39 @@ import Badge from "@/components/ui/Badge";
 
 const faqs = [
   {
-    question: "What format is the ebook delivered in?",
+    question: "How are products delivered after purchase?",
     answer:
-      "The ebook is delivered as a high-quality PDF and ePub file, accessible on all devices — desktop, tablet, Kindle, and mobile. You'll get download links immediately after purchase on the success page.",
+      "After your payment is confirmed, you'll be redirected to a success page with instant download links. All digital products are delivered as high-quality PDF files, accessible on any device — desktop, tablet, and mobile.",
   },
   {
-    question: "How is the ebook delivered after purchase?",
+    question: "What if I'm not satisfied with my purchase?",
     answer:
-      "After your payment is confirmed, you'll be redirected to a success page with instant download links. You'll also receive an email with your download links within minutes.",
+      "We offer a 30-day, no-questions-asked money-back guarantee. If you're not completely satisfied, simply email us within 30 days of purchase for a full refund. See our Refund Policy for details.",
   },
   {
-    question: "Is this suitable for beginners?",
+    question: "Are these products suitable for beginners?",
     answer:
-      "Absolutely. The ebook is structured from fundamentals to advanced strategies, making it perfect for beginners while still offering deep value for experienced marketers. Each chapter builds on the previous one.",
+      "Yes. All our products are structured from fundamentals to advanced strategies, making them perfect for beginners while still delivering deep value for experienced practitioners.",
   },
   {
-    question: "What if I'm not satisfied with the purchase?",
+    question: "Do I need specific AI tools or paid subscriptions?",
     answer:
-      "We offer a 30-day, no-questions-asked money-back guarantee. If you're not completely satisfied with the ebook, simply email us within 30 days of purchase for a full refund. See our Refund Policy for details.",
-  },
-  {
-    question: "Do I need any specific AI tools or subscriptions?",
-    answer:
-      "No mandatory subscriptions required. The ebook covers both free and paid AI tools, with specific recommendations for different budgets. You can start implementing strategies using free tools like ChatGPT's free tier.",
+      "No mandatory subscriptions required. Our products cover both free and paid AI tools, with recommendations for different budgets. You can start implementing strategies using free tools like ChatGPT's free tier.",
   },
   {
     question: "How often is the content updated?",
     answer:
-      "Your purchase includes 3 months of free updates. The AI landscape evolves fast, and we're committed to keeping the content current. Update notifications will be sent to your email.",
+      "Your purchase includes 3 months of free content updates. The AI landscape evolves fast and we're committed to keeping everything current. Update notifications are sent to your email.",
   },
   {
-    question: "Can I share this ebook with my team?",
+    question: "Can I use these products for my clients or team?",
     answer:
-      "The license covers personal use. For team licenses (3+ people), please contact us for discounted team pricing. This supports the continued development of new content.",
+      "The license covers personal use. For team or agency licenses (3+ people), please contact us for discounted pricing. This supports the continued development of new products.",
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer:
+      "We accept all major credit and debit cards (Visa, Mastercard, Amex). All payments are processed with 256-bit SSL encryption. Your card details are never stored on our servers.",
   },
 ];
 

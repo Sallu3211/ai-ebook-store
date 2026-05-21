@@ -3,17 +3,16 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyBar from "@/components/layout/StickyBar";
 import FloatingPopup from "@/components/ui/FloatingPopup";
-import Hero from "@/components/sections/Hero";
-import Features from "@/components/sections/Features";
+import StoreHero from "@/components/sections/StoreHero";
+import FeaturedProducts from "@/components/sections/FeaturedProducts";
 import Testimonials from "@/components/sections/Testimonials";
-import Pricing from "@/components/sections/Pricing";
-import FAQ from "@/components/sections/FAQ";
 import EmailCapture from "@/components/sections/EmailCapture";
+import FAQ from "@/components/sections/FAQ";
 
 export const metadata: Metadata = {
-  title: "AI Lead Generation Strategy — The #1 Ebook for Modern Marketers",
+  title: "TrendingAI — Premium AI Tools, Ebooks & Templates",
   description:
-    "Generate 10x more qualified leads using proven AI frameworks. 150+ pages, 40+ templates, instant download. Trusted by 2,400+ growth leaders.",
+    "Your unfair advantage. Browse premium AI products — ebooks, templates, and tools built for marketers, founders, and growth leaders. Instant download.",
 };
 
 export default function HomePage() {
@@ -21,11 +20,12 @@ export default function HomePage() {
     <>
       <Navbar />
       <main className="flex-1">
-        <Hero />
-        <Features />
+        <StoreHero />
+        <FeaturedProducts />
         <Testimonials />
-        <EmailCapture />
-        <Pricing />
+        <div id="newsletter">
+          <EmailCapture />
+        </div>
         <FAQ />
       </main>
       <Footer />

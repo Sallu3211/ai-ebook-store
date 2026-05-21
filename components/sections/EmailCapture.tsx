@@ -10,9 +10,8 @@ export default function EmailCapture() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-
     setStatus("loading");
-    // Simulate API call — replace with your email provider (Mailchimp, ConvertKit, etc.)
+    // Replace with your email provider (Mailchimp, ConvertKit, etc.)
     await new Promise((r) => setTimeout(r, 1000));
     setStatus("success");
     setEmail("");
@@ -33,14 +32,14 @@ export default function EmailCapture() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-4xl mb-4">📩</p>
+          <p className="text-4xl mb-4">⚡</p>
           <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white mb-4">
-            Get a{" "}
-            <span className="gradient-text">Free Chapter</span>
+            Stay Ahead of{" "}
+            <span className="gradient-text">AI Trends</span>
           </h2>
           <p className="text-slate-400 mb-8 leading-relaxed">
-            Enter your email and we&apos;ll send you Chapter 1 — "Building Your AI Lead
-            Generation Foundation" — completely free. No credit card required.
+            Join 2,400+ marketers and founders getting early access to new AI products,
+            exclusive discounts, and strategies that actually work — straight to your inbox.
           </p>
 
           {status === "success" ? (
@@ -50,10 +49,10 @@ export default function EmailCapture() {
               className="glass rounded-2xl p-6 border border-emerald-500/20"
             >
               <p className="text-emerald-400 font-semibold text-lg mb-1">
-                ✓ Check your inbox!
+                ✓ You&apos;re on the list!
               </p>
               <p className="text-slate-400 text-sm">
-                Your free chapter is on its way.
+                Watch your inbox for exclusive drops and early-bird deals.
               </p>
             </motion.div>
           ) : (
@@ -64,7 +63,7 @@ export default function EmailCapture() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
                 required
-                className="flex-1 glass rounded-xl px-5 py-3.5 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent border border-white/8 focus:border-indigo-500 transition-all"
+                className="flex-1 glass rounded-xl px-5 py-3.5 text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent border border-white/8 transition-all"
               />
               <button
                 type="submit"
@@ -77,10 +76,10 @@ export default function EmailCapture() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                    Sending...
+                    Joining...
                   </span>
                 ) : (
-                  "Send Free Chapter →"
+                  "Join the Insiders →"
                 )}
               </button>
             </form>

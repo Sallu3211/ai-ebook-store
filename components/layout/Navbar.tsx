@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Product", href: "/product" },
+  { label: "Store", href: "/products" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -26,7 +26,7 @@ export default function Navbar() {
                 <span className="text-white font-bold text-sm">AI</span>
               </div>
               <span className="font-bold text-white text-lg tracking-tight">
-                LeadGen<span className="text-indigo-400">Pro</span>
+                Trending<span className="text-indigo-400">AI</span>
               </span>
             </Link>
 
@@ -45,11 +45,11 @@ export default function Navbar() {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-3">
-              <Button href="/product" size="sm" variant="outline">
-                View Product
+              <Button href="/#newsletter" size="sm" variant="outline">
+                Get Notified
               </Button>
-              <Button href="/checkout" size="sm">
-                Get the Ebook →
+              <Button href="/products" size="sm">
+                Shop Now →
               </Button>
             </div>
 
@@ -92,12 +92,12 @@ export default function Navbar() {
               ))}
               <div className="mt-3 pt-3 border-t border-white/8">
                 <Button
-                  href="/checkout"
+                  href="/products"
                   size="md"
                   fullWidth
                   onClick={() => setIsMobileOpen(false)}
                 >
-                  Get the Ebook →
+                  Shop Now →
                 </Button>
               </div>
             </nav>

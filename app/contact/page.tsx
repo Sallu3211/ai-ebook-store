@@ -28,7 +28,7 @@ export default function ContactPage() {
               Get in <span className="gradient-text">Touch</span>
             </h1>
             <p className="text-slate-400 leading-relaxed">
-              Questions about the ebook? Need support? We&apos;ll get back to you
+              Questions about our products? Need support? We&apos;ll get back to you
               within 24 hours.
             </p>
           </div>

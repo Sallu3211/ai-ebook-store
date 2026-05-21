@@ -6,7 +6,7 @@ import Badge from "@/components/ui/Badge";
 const testimonials = [
   {
     quote:
-      "This ebook completely transformed how I approach lead generation. Within 30 days of implementing the AI frameworks, our pipeline grew by 340%. Absolutely worth every penny.",
+      "TrendingAI completely transformed how I approach lead generation. Within 30 days of implementing the AI frameworks, our pipeline grew by 340%. Absolutely worth every penny.",
     author: "Sarah Mitchell",
     role: "Head of Growth, TechScale",
     avatar: "SM",
@@ -14,7 +14,7 @@ const testimonials = [
   },
   {
     quote:
-      "I've read dozens of marketing books, but none came close to the practical depth of this ebook. The automation blueprints alone saved me 20+ hours per week.",
+      "The automation blueprints alone saved me 20+ hours per week. These are the most practical AI resources I've found — nothing else comes close.",
     author: "James Rodriguez",
     role: "Founder, LeadLab Agency",
     avatar: "JR",
@@ -22,7 +22,7 @@ const testimonials = [
   },
   {
     quote:
-      "As a solopreneur, I needed an edge. This ebook gave me a complete AI-powered system that's generating more qualified leads than my previous 5-person team.",
+      "As a solopreneur, I needed an edge. TrendingAI gave me a complete AI-powered system that's generating more qualified leads than my previous 5-person team.",
     author: "Priya Sharma",
     role: "B2B Consultant",
     avatar: "PS",
@@ -30,7 +30,7 @@ const testimonials = [
   },
   {
     quote:
-      "The LinkedIn AI strategies in chapter 7 alone paid for this ebook 100x over. We booked 12 enterprise demos in the first week of implementation.",
+      "The LinkedIn AI strategies alone paid for this 100x over. We booked 12 enterprise demos in the first week of implementation. Unreal ROI.",
     author: "Marcus Chen",
     role: "VP Sales, Propel SaaS",
     avatar: "MC",
@@ -38,7 +38,7 @@ const testimonials = [
   },
   {
     quote:
-      "Concise, actionable, and incredibly up-to-date. The AI tool stack recommendations are exactly what modern marketers need. I recommend this to every client.",
+      "Concise, actionable, and incredibly up-to-date. The AI tool stack recommendations are exactly what modern marketers need. I recommend TrendingAI to every client.",
     author: "Emma Thompson",
     role: "Digital Marketing Strategist",
     avatar: "ET",
@@ -46,7 +46,7 @@ const testimonials = [
   },
   {
     quote:
-      "Skeptical at first, but the results speak for themselves. Cost per lead dropped from $180 to $23 using just the AI prospecting framework in chapter 3.",
+      "Skeptical at first, but the results speak for themselves. Cost per lead dropped from $180 to $23 using just the AI prospecting framework. Best $27 I ever spent.",
     author: "David Park",
     role: "Performance Marketing Lead",
     avatar: "DP",

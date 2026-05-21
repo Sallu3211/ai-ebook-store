@@ -1,10 +1,9 @@
 import Link from "next/link";
 
 const footerLinks = {
-  Product: [
-    { label: "Overview", href: "/product" },
-    { label: "Pricing", href: "/product#pricing" },
-    { label: "What's Inside", href: "/product#features" },
+  Store: [
+    { label: "All Products", href: "/products" },
+    { label: "AI Lead Generation", href: "/products/ai-lead-generation" },
   ],
   Company: [
     { label: "About Us", href: "/about" },
@@ -29,11 +28,11 @@ export default function Footer() {
                 <span className="text-white font-bold text-sm">AI</span>
               </div>
               <span className="font-bold text-white text-lg tracking-tight">
-                LeadGen<span className="text-indigo-400">Pro</span>
+                Trending<span className="text-indigo-400">AI</span>
               </span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed max-w-[200px]">
-              Helping businesses grow with AI-powered lead generation strategies.
+              Premium AI tools, ebooks, and templates built for real results. Instant download.
             </p>
           </div>
 
@@ -61,14 +60,14 @@ export default function Footer() {
 
         <div className="border-t border-white/8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-600">
-            © {new Date().getFullYear()} LeadGenPro. All rights reserved.
+            © {new Date().getFullYear()} TrendingAI. All rights reserved.
           </p>
           <div className="flex items-center gap-4 text-xs text-slate-600">
             <a href="mailto:info@aiproducts.online" className="hover:text-slate-400 transition-colors">
               info@aiproducts.online
             </a>
             <span>·</span>
-            <span>Secure payments powered by Paddle</span>
+            <span>🔒 Secure · SSL Encrypted</span>
           </div>
         </div>
       </div>

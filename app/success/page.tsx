@@ -7,7 +7,7 @@ import SuccessContent from "@/components/sections/SuccessContent";
 
 export const metadata: Metadata = {
   title: "Thank You — Your Download is Ready",
-  description: "Your purchase is complete. Download your AI Lead Generation Strategy ebook now.",
+  description: "Your purchase is complete. Your download is ready — instant access to your AI product.",
   robots: { index: false, follow: false },
 };
 
